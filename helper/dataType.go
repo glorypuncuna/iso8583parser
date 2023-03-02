@@ -1,15 +1,29 @@
 package helper
 
 import (
+	"encoding/hex"
 	"fmt"
 	"mappertest/entity"
 	"strconv"
 )
 
-func TypeFixed(raw []string, length int) (string, []string) {
+func TypeFixed(mode int, num int, raw []string, length int) (string, []string) {
+	var newVal string
+	convert := CheckAlpha(strconv.Itoa(num))
+	if convert && mode == 3 {
+		length *= 2
+	}
+
 	de := raw[:length]
+	fmt.Println(num, ": ", de)
 	newRaw := raw[length:]
-	return ArrToString(de), newRaw
+	newVal = ArrToString(de)
+	if convert && mode == 3 {
+		value, _ := hex.DecodeString(newVal)
+		newVal = string(value)
+	}
+
+	return newVal, newRaw
 }
 
 // func TypeFixedModif(raw []string, length int) (string, []string, string) {
@@ -19,7 +33,7 @@ func TypeFixed(raw []string, length int) (string, []string) {
 // 	return ArrToString(de), newRaw, mod
 // }
 
-func TypeVar(raw []string, dataType int) (string, []string, int) {
+func TypeVar(mode int, num int, raw []string, dataType int) (string, []string, int) {
 
 	//only if the length is defined by hex numnber
 	//lengthHex := ArrToString(raw[:dataType])
@@ -27,14 +41,25 @@ func TypeVar(raw []string, dataType int) (string, []string, int) {
 	// length := int(hex)
 
 	length, err := strconv.Atoi(ArrToString(raw[:dataType]))
-
-	fmt.Println(length)
 	if err != nil {
 		fmt.Println("Length is not an integer")
 	}
+
+	convert := CheckAlpha(strconv.Itoa(num))
+	if convert && mode == 3 {
+		length *= 2
+	}
+
 	de := raw[dataType : length+dataType]
 	newRaw := raw[length+dataType:]
-	return ArrToString(de), newRaw, length
+
+	newVal := ArrToString(de)
+	if convert && mode == 3 {
+		value, _ := hex.DecodeString(newVal)
+		newVal = string(value)
+	}
+
+	return newVal, newRaw, length
 }
 
 func AssignField(id int, label string) entity.Field {

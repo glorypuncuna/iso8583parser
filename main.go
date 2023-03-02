@@ -22,7 +22,11 @@ func main() {
 
 	api.POST("/bitmapBit/:input", bitmapBitHandler.ResultField)
 	api.POST("/mti/:input", mtiHandler.MTIConverter)
-	api.POST("/iso/coba/", isoHandler.TestDulu)
+	//Parse with all the plain text
+	api.POST("/iso/mode1/", isoHandler.Mode1)
+	//Parse the hexdump
+	api.POST("/iso/mode2/", isoHandler.Mode2)
+	api.POST("/iso/mode3/", isoHandler.Mode3)
 
 	router.Run()
 }

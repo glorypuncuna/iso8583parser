@@ -11,6 +11,7 @@ type BitmapBitInput struct {
 type ISOInput struct {
 	InputISO          string `json:"iso"`
 	InputLengthHeader int    `json:"lengthHeader"`
+	ModeType          int    `json:"mode"`
 }
 
 type MTIInput struct {
