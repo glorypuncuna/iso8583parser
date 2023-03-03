@@ -14,13 +14,18 @@ func TypeFixed(mode int, num int, raw []string, length int) (string, []string) {
 		length *= 2
 	}
 
+	if !convert && mode == 3 && length%2 == 1 {
+		length += 1
+	}
+
 	de := raw[:length]
-	fmt.Println(num, ": ", de)
+	fmt.Println(num, ": ", de, " length :", length)
 	newRaw := raw[length:]
 	newVal = ArrToString(de)
 	if convert && mode == 3 {
 		value, _ := hex.DecodeString(newVal)
 		newVal = string(value)
+		fmt.Println(num, " isinya: ", newVal)
 	}
 
 	return newVal, newRaw
@@ -39,6 +44,9 @@ func TypeVar(mode int, num int, raw []string, dataType int) (string, []string, i
 	//lengthHex := ArrToString(raw[:dataType])
 	// hex, err := strconv.ParseInt(lengthHex, 16, 64)
 	// length := int(hex)
+	if mode == 3 && dataType%2 == 1 {
+		dataType += 1
+	}
 
 	length, err := strconv.Atoi(ArrToString(raw[:dataType]))
 	if err != nil {
@@ -51,12 +59,14 @@ func TypeVar(mode int, num int, raw []string, dataType int) (string, []string, i
 	}
 
 	de := raw[dataType : length+dataType]
+	fmt.Println(num, ": ", de, " length :", length)
 	newRaw := raw[length+dataType:]
 
 	newVal := ArrToString(de)
 	if convert && mode == 3 {
 		value, _ := hex.DecodeString(newVal)
 		newVal = string(value)
+		fmt.Println(num, " isinya: ", newVal)
 	}
 
 	return newVal, newRaw, length

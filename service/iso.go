@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/hex"
+	"fmt"
 	"mappertest/entity"
 	"mappertest/formatter"
 	"mappertest/helper"
@@ -37,6 +38,8 @@ func (s *isoService) SplitISO(in input.ISOInput) entity.ISO {
 	var startDataLen int
 	iso.Bitmap, startDataLen = helper.BitmapFromISO(in.InputLengthHeader, split)
 	dataEl := split[startDataLen:]
+
+	fmt.Println("MTI ", iso.MTIMess, iso.Bitmap.Field)
 
 	iso.DataElement = helper.GetField(dataEl, iso.Bitmap.Field, in.ModeType)
 

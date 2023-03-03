@@ -32,6 +32,7 @@ func (h *isoHandler) Mode1(c *gin.Context) {
 		return
 	}
 
+	input.ModeType = 1
 	res := h.isoService.SplitISO(input)
 	c.JSON(http.StatusOK, helper.APIResponse("Data has been proceed sucessfully",
 		200, "success", res))
@@ -52,6 +53,7 @@ func (h *isoHandler) Mode2(c *gin.Context) {
 		return
 	}
 
+	input.ModeType = 2
 	res := h.isoService.ToHex(input)
 	c.JSON(http.StatusOK, helper.APIResponse("Data has been proceed sucessfully",
 		200, "success", res))
