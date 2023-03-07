@@ -6,7 +6,7 @@ import (
 
 //1 for lvar, 2 for llvar, and 3 for lllvar
 
-func GetField(raw []string, bitmap []int, mode int) []entity.Field {
+func GetField(raw []string, bitmap []int, mode int, mti string) []entity.Field {
 	var datel []entity.Field
 
 	for _, c := range bitmap {
@@ -360,7 +360,7 @@ func GetField(raw []string, bitmap []int, mode int) []entity.Field {
 		case 59:
 			field := AssignField(59, "Reserved (national)")
 
-			field.Value, raw, field.Length = TypeVar(mode, c, raw, 3)
+			field.Value, raw, field.Length = TypeVarCustom(mode, c, raw, 3, mti)
 
 			datel = append(datel, field)
 		case 60:

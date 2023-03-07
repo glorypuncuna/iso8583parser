@@ -41,7 +41,7 @@ func (s *isoService) SplitISO(in input.ISOInput) entity.ISO {
 
 	fmt.Println("MTI ", iso.MTIMess, iso.Bitmap.Field)
 
-	iso.DataElement = helper.GetField(dataEl, iso.Bitmap.Field, in.ModeType)
+	iso.DataElement = helper.GetField(dataEl, iso.Bitmap.Field, in.ModeType, iso.Mti)
 
 	return iso
 }
