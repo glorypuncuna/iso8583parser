@@ -145,7 +145,7 @@ func GetField(raw []string, bitmap []int, mode int) []entity.Field {
 
 			datel = append(datel, field)
 		case 24:
-			field := AssignField(24, "Function code (ISO 8583:1993), or network international identifier (NII)")
+			field := AssignField(24, "Network international identifier (NII)")
 			field.Length = 3
 			field.Value, raw = TypeFixed(mode, c, raw, field.Length)
 

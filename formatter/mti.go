@@ -1,7 +1,7 @@
 package formatter
 
 type MTIFormatter struct {
-	ISOVersion      string `json:"ISOVersion"`
+	ISOVersion      string `json:"isoVersion"`
 	MessageClass    string `json:"messageClass"`
 	MessageFunction string `json:"messageFunction"`
 	MessageOrigin   string `json:"messageOrigin"`

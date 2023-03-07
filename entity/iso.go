@@ -3,9 +3,9 @@ package entity
 import "mappertest/formatter"
 
 type ISO struct {
-	Header      string
-	Mti         string
-	MTIMess     formatter.MTIFormatter
-	Bitmap      formatter.BitmapFormatter
-	DataElement []Field
+	Header      string                    `json:"header"`
+	Mti         string                    `json:"mti"`
+	MTIMess     formatter.MTIFormatter    `json:"mtiMess"`
+	Bitmap      formatter.BitmapFormatter `json:"bitmap"`
+	DataElement []Field                   `json:"dataElement"`
 }
